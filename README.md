@@ -54,9 +54,12 @@ project-name/
 3. **Create **``
 
    ```text
+   nbformat
+   numpy
    pandas
-   plotly
    streamlit
+   plotly
+   plotly-express
    ```
 
 4. **Clone the Repository & Open in VS Code**

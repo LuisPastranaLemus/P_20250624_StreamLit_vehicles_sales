@@ -1,5 +1,6 @@
+nbformat
+numpy
 pandas
 streamlit
-nbformat
 plotly
 plotly-express
