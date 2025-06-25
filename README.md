@@ -54,8 +54,6 @@ project-name/
 3. **Create **``
 
    ```text
-  io
-   matplotlib
    kaleido
    nbformat
    numpy
