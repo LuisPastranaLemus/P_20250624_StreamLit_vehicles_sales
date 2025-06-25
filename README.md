@@ -122,7 +122,7 @@ streamlit run app.py
 3. Use the following settings:
    - **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
    - **Start Command**: `streamlit run app.py`
-4. Access app at: `https://<APP_NAME>.onrender.com/`
+4. Access app at: `https://p-20250624-streamlit-vehicles-sales.onrender.com`
 
 Note: The app may take a few minutes to wake up if inactive.
 
