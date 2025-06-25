@@ -51,7 +51,7 @@ project-name/
    conda install pandas plotly streamlit
    ```
 
-3. **Create **``
+3. **Create **
 
    ```text
    kaleido
