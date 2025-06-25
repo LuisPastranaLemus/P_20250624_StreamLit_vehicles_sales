@@ -54,13 +54,14 @@ project-name/
 3. **Create **``
 
    ```text
+  io
+   matplotlib
    kaleido
    nbformat
    numpy
    pandas
    streamlit
-   plotly
-   plotly[chrome]
+   plotly==6.1.2
    plotly-express
    ```
 
