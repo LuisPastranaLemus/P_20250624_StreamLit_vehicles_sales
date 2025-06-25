@@ -1,6 +1,7 @@
+kaleido
 nbformat
 numpy
 pandas
 streamlit
-plotly
+plotly==6.1.2
 plotly-express

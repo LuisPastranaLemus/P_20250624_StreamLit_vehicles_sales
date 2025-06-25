@@ -54,6 +54,7 @@ project-name/
 3. **Create **``
 
    ```text
+   kaleido
    nbformat
    numpy
    pandas

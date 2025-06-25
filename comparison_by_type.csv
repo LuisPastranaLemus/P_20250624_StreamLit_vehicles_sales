@@ -1,0 +1,14 @@
+type,count
+SUV,12405
+truck,12353
+sedan,12154
+pickup,6988
+coupe,2303
+wagon,1541
+mini-van,1161
+hatchback,1047
+van,633
+convertible,446
+other,256
+offroad,214
+bus,24

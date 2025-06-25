@@ -4,6 +4,7 @@ import plotly.express as px
 import streamlit as st
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+import plotly.io as pio
 
 
 df_vehicles = pd.read_csv("Datasets/vehicles_us.csv", sep=',', header='infer')
@@ -83,6 +84,17 @@ for i, tab in enumerate(tabs):
                         - **Max:** ${price_data.max():,.0f}
                     """)
 
+                    # Download CSV
+                    csv = price_data.to_frame(name="price").to_csv(
+                        index=False).encode('utf-8')
+                    st.download_button(
+                        "📥 Download price data (CSV)", data=csv, file_name="price_data.csv", mime="text/csv")
+
+                    # Download PNG
+                    img = pio.to_image(fig, format="png")
+                    st.download_button(
+                        "🖼️ Download chart as PNG", data=img, file_name="price_chart.png", mime="image/png")
+
                 elif view_mode == 'Odometer only':
                     fig = px.histogram(df_vehicles, x='odometer', nbins=50, title='Odometer Distribution',
                                        color_discrete_sequence=['grey'])
@@ -96,6 +108,15 @@ for i, tab in enumerate(tabs):
                         - **Min:** {odo_data.min():,.0f} miles
                         - **Max:** {odo_data.max():,.0f} miles
                     """)
+
+                    csv = odo_data.to_frame(name="odometer").to_csv(
+                        index=False).encode('utf-8')
+                    st.download_button("📥 Download mileage data (CSV)",
+                                       data=csv, file_name="mileage_data.csv", mime="text/csv")
+
+                    img = pio.to_image(fig, format="png")
+                    st.download_button("🖼️ Download chart as PNG", data=img,
+                                       file_name="mileage_chart.png", mime="image/png")
 
                 else:
                     fig_price = px.histogram(df_vehicles, x='price', nbins=50,
@@ -131,6 +152,16 @@ for i, tab in enumerate(tabs):
                         - **Min:** {odo_data.min():,.0f} miles
                         - **Max:** {odo_data.max():,.0f} miles
                     """)
+
+                    combined = pd.DataFrame(
+                        {"price": price_data, "odometer": odo_data}).dropna()
+                    csv = combined.to_csv(index=False).encode('utf-8')
+                    st.download_button("📥 Download combined data (CSV)", data=csv,
+                                       file_name="price_mileage_data.csv", mime="text/csv")
+
+                    img = pio.to_image(fig, format="png")
+                    st.download_button("🖼️ Download combined chart (PNG)", data=img,
+                                       file_name="price_mileage_chart.png", mime="image/png")
 
         if i == 1:
             # 2. Descriptive statistics for Comparison by vehicle type or condition
@@ -186,6 +217,16 @@ for i, tab in enumerate(tabs):
                 - **Total listings shown:** {total}
                 """)
 
+                # Download DataFrame
+                csv = grouped.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download grouped data (CSV)", data=csv,
+                                   file_name=f"grouped_by_{group_by_col}.csv", mime="text/csv")
+
+                # Download Chart
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download bar chart (PNG)", data=img,
+                                   file_name=f"barplot_by_{group_by_col}.png", mime="image/png")
+
         if i == 2:
             # 3. Descriptive statistics for Scatter plots for price vs. model year or mileage
 
@@ -233,6 +274,16 @@ for i, tab in enumerate(tabs):
                 - **Median {x_axis}:** {df_plot[x_axis].median():,.0f}
                 - **Average price (filtered):** ${df_plot['price'].mean():,.0f}
                 """)
+
+                # Download filtered DataFrame
+                csv = df_plot.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download scatter data (CSV)", data=csv,
+                                   file_name=f"scatter_data_{x_axis}.csv", mime="text/csv")
+
+                # Download scatter plot as image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download scatter chart (PNG)", data=img,
+                                   file_name=f"scatter_plot_{x_axis}.png", mime="image/png")
 
         if i == 3:
             # 4. Descriptive statistics for Price Trends Over Time
@@ -290,6 +341,16 @@ for i, tab in enumerate(tabs):
                 - **Average of all prices:** ${grouped['price'].mean():,.0f}
                 - **Years analyzed:** {grouped.shape[0]}
                 """)
+
+                # Download aggregated data
+                csv = grouped.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download price trends data (CSV)", data=csv,
+                                   file_name=f"price_trends_{agg_func}.csv", mime="text/csv")
+
+                # Download chart image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download price trends chart (PNG)", data=img,
+                                   file_name=f"price_trends_chart_{agg_func}.png", mime="image/png")
 
         if i == 4:
             # 5. Descriptive statistics for Condition Impact
@@ -355,6 +416,16 @@ for i, tab in enumerate(tabs):
                 - **Model-condition combinations analyzed:** {grouped.shape[0]}
                 """)
 
+                # Download DataFrame
+                csv = grouped.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download condition impact data (CSV)", data=csv,
+                                   file_name=f"condition_impact_by_{group_col}.csv", mime="text/csv")
+
+                # Download chart as image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download condition impact chart (PNG)", data=img,
+                                   file_name=f"condition_impact_chart_{group_col}.png", mime="image/png")
+
         if i == 5:
             # 6. Descriptive statistics for Brand vs. Price
 
@@ -412,6 +483,16 @@ for i, tab in enumerate(tabs):
                 - **Average price across these brands:** ${avg_price['price'].mean():,.0f}
                 """)
 
+                # Download DataFrame
+                csv = avg_price.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download brand price data (CSV)", data=csv,
+                                   file_name=f"avg_price_by_brand_top_{top_n_brand}.csv", mime="text/csv")
+
+                # Download chart as image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download brand price chart (PNG)", data=img,
+                                   file_name=f"avg_price_by_brand_chart_top_{top_n_brand}.png", mime="image/png")
+
         if i == 6:
             # 7. Descriptive statistics for Mileage vs. Price (Depreciation)
 
@@ -466,6 +547,16 @@ for i, tab in enumerate(tabs):
                 - **Total listings analyzed:** {df_filtered.shape[0]}
                 """)
 
+                # Download filtered data
+                csv = df_filtered.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download depreciation data (CSV)", data=csv,
+                                   file_name=f"depreciation_data_{selected_condition.lower()}.csv", mime="text/csv")
+
+                # Download heatmap image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download heatmap chart (PNG)", data=img,
+                                   file_name=f"depreciation_heatmap_{selected_condition.lower()}.png", mime="image/png")
+
         if i == 7:
             # 8. Descriptive statistics for Top Models Sales
 
@@ -518,6 +609,16 @@ for i, tab in enumerate(tabs):
                 - **Share in top {top_n}:** {percent:.1f}%
                 - **Total listings analyzed:** {total}
                 """)
+
+                # Download top counts data
+                csv = top_counts.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download top sales data (CSV)", data=csv,
+                                   file_name=f"top_{group_by}_sales_{top_n}.csv", mime="text/csv")
+
+                # Download pie chart as image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download pie chart (PNG)", data=img,
+                                   file_name=f"top_{group_by}_pie_chart_{top_n}.png", mime="image/png")
 
         if i == 8:
             # 9. Descriptive statistics for Transmission Type Analysis
@@ -579,6 +680,16 @@ for i, tab in enumerate(tabs):
                 - **Average across types:** ${grouped['price'].mean():,.0f}
                 """)
 
+                # Download grouped data
+                csv = grouped.to_csv(index=False).encode('utf-8')
+                st.download_button("📥 Download transmission data (CSV)", data=csv,
+                                   file_name=f"transmission_price_{agg_func}.csv", mime="text/csv")
+
+                # Download chart as image
+                img = pio.to_image(fig, format="png")
+                st.download_button("🖼️ Download transmission chart (PNG)", data=img,
+                                   file_name=f"transmission_chart_{agg_func}.png", mime="image/png")
+
         if i == 9:
             # 10. Descriptive statistics for Fuel Type Preference
 
@@ -635,6 +746,16 @@ for i, tab in enumerate(tabs):
                     - **Difference between highest and lowest:** ${diff:,.0f}
                     - **Listings analyzed:** {df_filtered.shape[0]}
                     """)
+
+                    # Download filtered data
+                    csv = df_filtered.to_csv(index=False).encode('utf-8')
+                    st.download_button("📥 Download fuel data (CSV)", data=csv,
+                                       file_name=f"fuel_price_data.csv", mime="text/csv")
+
+                    # Download box plot image
+                    img = pio.to_image(fig, format="png")
+                    st.download_button("🖼️ Download fuel chart (PNG)", data=img,
+                                       file_name=f"fuel_price_boxplot.png", mime="image/png")
 
                 else:
                     st.warning("Please select at least one fuel type.")
@@ -720,6 +841,16 @@ for i, tab in enumerate(tabs):
                     - **Highest correlation:** {max_corr[0]} and {max_corr[1]} - {corr_matrix.loc[max_corr[0], max_corr[1]]:.2f}
                     - **Lowest correlation:** {min_corr[0]} and {min_corr[1]} - {corr_matrix.loc[min_corr[0], min_corr[1]]:.2f}
                     """)
+
+                    # Download selected data
+                    csv = df_selected.to_csv(index=False).encode('utf-8')
+                    st.download_button("📥 Download correlation data (CSV)", data=csv,
+                                       file_name="correlation_features_data.csv", mime="text/csv")
+
+                    # Download scatter matrix image
+                    img = pio.to_image(fig, format="png")
+                    st.download_button("🖼️ Download scatter matrix (PNG)", data=img,
+                                       file_name="scatter_matrix_features.png", mime="image/png")
 
                 else:
                     st.warning(
