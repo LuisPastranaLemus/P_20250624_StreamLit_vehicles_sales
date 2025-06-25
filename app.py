@@ -6,6 +6,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import plotly.io as pio
 
+pio.kaleido.scope.chromium_path = pio.kaleido.scope.ensure_chrome()
 
 df_vehicles = pd.read_csv("Datasets/vehicles_us.csv", sep=',', header='infer')
 
