@@ -21,12 +21,15 @@ Key tasks include:
 ```
 project-name/
 │
+├── Datasets/
+│   └── vehicles_us.csv      # Dataset for vehicle sales ads
+│
 ├── notebooks/
 │   └── EDA.ipynb            # Jupyter notebook with initial data analysis
 │
 ├── app.py                   # Streamlit web app
 ├── requirements.txt         # Required Python packages
-├── vehicles_us.csv          # Dataset for vehicle sales ads
+│
 ├── .gitignore               # Python-specific Git ignore rules
 └── README.md                # Project description and instructions
 ```
@@ -88,7 +91,7 @@ Suggested EDA tasks:
 - Top Models Sold: Use a bar chart to display the most listed models or makes.
 - Transmission Type Analysis: See how manual vs. automatic transmission affects price and popularity.
 - Fuel Type Preference: Compare price distributions across fuel types (gas, diesel, electric, hybrid).
-- Geographic Influence (if location data exists): Explore regional price differences or listing density.
+- Correlation Analysis of Vehicle Features: examine the linear relationships between key vehicle attributes and listing price,includes both numerical variables and encoded categorical features such as vehicle condition, fuel type, and transmission type..
 
 ---
 
