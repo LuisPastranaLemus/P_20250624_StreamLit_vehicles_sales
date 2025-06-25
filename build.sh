@@ -7,6 +7,3 @@ pip install -r requirements.txt
 
 # Download portable Chrome for Kaleido
 plotly_get_chrome
-
-# Execute Streamlit
-streamlit run app.py
