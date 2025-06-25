@@ -4,4 +4,5 @@ numpy
 pandas
 streamlit
 plotly==6.1.2
+plotly[chrome]
 plotly-express

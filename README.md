@@ -60,6 +60,7 @@ project-name/
    pandas
    streamlit
    plotly
+   plotly[chrome]
    plotly-express
    ```
 
