@@ -1,7 +1,12 @@
 #!/bin/bash
+set -e
 
-# Descargar Chrome portátil para Kaleido
+# Update pip and install ddependancies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Download portable Chrome for Kaleido
 plotly_get_chrome
 
-# Ejecutar Streamlit
+# Execute Streamlit
 streamlit run app.py
