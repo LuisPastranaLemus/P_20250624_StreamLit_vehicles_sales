@@ -130,5 +130,31 @@ Note: The app may take a few minutes to wake up if inactive.
 
 ## 📄 License
 
-This project is available for educational and learning purposes.
+This project is open-source and available for any educational or demonstration purposes.
+
+---
+
+🛠️ Tools & Libraries
+
+- Python 3.11
+- pandas, NumPy, IPython.display, scipy, streamlit, ipywidgets, plotly.express, plotly
+- Streamlit
+- Jupyter Notebook
+- Git & GitHub for version control
+
+---
+
+## 📌 Notes
+
+This project is part of a personal learning portfolio focused on developing strong skills in data analysis, statistical thinking, and communication of insights. Constructive feedback is welcome.
+
+---
+
+## 👤 Author   
+##### Luis Sergio Pastrana Lemus   
+##### Engineer pivoting into Data Science | Passionate about insights, structure, and solving real-world problems with data.   
+##### [GitHub Profile](https://github.com/LuisPastranaLemus)   
+##### 📍 Querétaro, México     
+##### 📧 Contact: luis.pastrana.lemus@engineer.com   
+---
 
